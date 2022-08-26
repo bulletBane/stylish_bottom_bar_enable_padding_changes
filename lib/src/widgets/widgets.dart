@@ -6,13 +6,12 @@ Widget innerWidget(
   context,
   double additionalBottomPadding,
   fabLocation,
+  EdgeInsetsGeometry padding,
   List<Widget> childs, [
   BarAnimation barAnimation = BarAnimation.fade,
 ]) {
   return Padding(
-    padding: const EdgeInsets.symmetric(
-      horizontal: 10,
-    ),
+    padding: padding,
     child: ConstrainedBox(
       constraints: BoxConstraints(
           minHeight: kBottomNavigationBarHeight + additionalBottomPadding),

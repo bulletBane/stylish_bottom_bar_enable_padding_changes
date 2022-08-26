@@ -21,6 +21,7 @@ class BubbleNavigationTile extends StatelessWidget {
     this.inkColor = Colors.grey,
     this.padding,
     this.fillStyle,
+    this.radius,
   }) : super(key: key);
 
   final BubbleBarItem item;
@@ -37,12 +38,10 @@ class BubbleNavigationTile extends StatelessWidget {
   final EdgeInsets? padding;
   final BubbleBarStyle? barStyle;
   final BubbleFillStyle? fillStyle;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
-    ///flex size
-    var flexSize = (flex! * 1000.0).round();
-
     ///Label Widget
     var label = LabelWidget(
       animation: animation,
@@ -53,72 +52,62 @@ class BubbleNavigationTile extends StatelessWidget {
     var outlined = selected && fillStyle == BubbleFillStyle.outlined;
     var fill = selected && fillStyle == BubbleFillStyle.fill;
 
-    return Expanded(
-      flex: flexSize,
-      child: Semantics(
-        container: true,
-        header: true,
-        selected: selected,
-        child: Stack(
-          children: [
-            Padding(
-              padding: padding!,
-              child: InkWell(
-                onTap: onTap,
-                borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(52),
-                  left: Radius.circular(52),
-                ),
-                highlightColor: Colors.transparent,
-                splashColor: ink ? inkColor : Colors.transparent,
-                child: Container(
-                  // height: 48,
-                  height: barStyle == BubbleBarStyle.horizotnal
-                      ? 48
-                      : iconSize > 30 //decreased to 30 from 32
-                          ? 50 + (iconSize - 30) //decreased to 30 from 32
-                          : 50,
-
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.horizontal(
-                      right: Radius.circular(52),
-                      left: Radius.circular(52),
-                    ),
-                    border: Border.all(
-                        width: outlined ? 1 : 0,
-                        color: item.borderColor!,
-                        style: outlined ? BorderStyle.solid : BorderStyle.none),
-                    color: fill
-                        ? item.backgroundColor!.withOpacity(opacity)
-                        : Colors.transparent,
+    return Semantics(
+      container: true,
+      header: true,
+      selected: selected,
+      child: Stack(
+        children: [
+          Padding(
+            padding: padding!,
+            child: InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.horizontal(
+                right: Radius.circular(radius ?? 52),
+                left: Radius.circular(radius ?? 52),
+              ),
+              highlightColor: Colors.transparent,
+              splashColor: ink ? inkColor : Colors.transparent,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.horizontal(
+                    right: Radius.circular(radius ?? 52),
+                    left: Radius.circular(radius ?? 52),
                   ),
-                  child: barStyle == BubbleBarStyle.horizotnal
-                      ? Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-
-                          ///Add space around selected item
-                          mainAxisAlignment: selected
-                              ? MainAxisAlignment.spaceEvenly
-                              : MainAxisAlignment.center,
-                          children: items(label),
-                        )
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-
-                          ///Add space around selected item
-                          mainAxisAlignment: selected
-                              ? MainAxisAlignment.spaceEvenly
-                              : MainAxisAlignment.center,
-                          children: items(label),
-                        ),
+                  border: Border.all(
+                      width: outlined ? 1 : 0,
+                      color: item.borderColor!,
+                      style: outlined ? BorderStyle.solid : BorderStyle.none),
+                  color: fill
+                      ? item.backgroundColor!.withOpacity(opacity)
+                      : Colors.transparent,
                 ),
+                child: barStyle == BubbleBarStyle.horizotnal
+                    ? Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+
+                        ///Add space around selected item
+                        mainAxisAlignment: selected
+                            ? MainAxisAlignment.spaceEvenly
+                            : MainAxisAlignment.center,
+                        children: items(label),
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+
+                        ///Add space around selected item
+                        mainAxisAlignment: selected
+                            ? MainAxisAlignment.spaceEvenly
+                            : MainAxisAlignment.center,
+                        children: items(label),
+                      ),
               ),
             ),
-            Semantics(
-              label: indexLabel,
-            ),
-          ],
-        ),
+          ),
+          Semantics(
+            label: indexLabel,
+          ),
+        ],
       ),
     );
   }

@@ -11,31 +11,32 @@ import 'dart:math' as math;
 
 // ignore: must_be_immutable
 class StylishBottomBar extends StatefulWidget {
-  StylishBottomBar(
-      {Key? key,
-      required this.items,
-      this.iconStyle,
-      this.backgroundColor,
-      this.elevation,
-      this.currentIndex = 0,
-      this.iconSize = 26.0,
-      this.padding = EdgeInsets.zero,
-      this.inkEffect = false,
-      this.inkColor = Colors.grey,
-      this.onTap,
-      this.opacity = 0.8,
-      this.borderRadius,
-      this.fabLocation,
-      this.hasNotch = false,
-      this.barAnimation = BarAnimation.fade,
-      //======================//
-      //===For bubble style===//
-      //======================//
-      this.bubbleFillStyle = BubbleFillStyle.fill,
-      this.unselectedIconColor = Colors.black,
-      this.barStyle = BubbleBarStyle.horizotnal,
-      this.fabInnerPadding = const EdgeInsets.symmetric(horizontal: 10)})
-      : assert(items.length >= 2,
+  StylishBottomBar({
+    Key? key,
+    required this.items,
+    this.iconStyle,
+    this.backgroundColor,
+    this.elevation,
+    this.currentIndex = 0,
+    this.iconSize = 26.0,
+    this.padding = EdgeInsets.zero,
+    this.inkEffect = false,
+    this.inkColor = Colors.grey,
+    this.onTap,
+    this.opacity = 0.8,
+    this.borderRadius,
+    this.fabLocation,
+    this.hasNotch = false,
+    this.barAnimation = BarAnimation.fade,
+    //======================//
+    //===For bubble style===//
+    //======================//
+    this.bubbleFillStyle = BubbleFillStyle.fill,
+    this.unselectedIconColor = Colors.black,
+    this.barStyle = BubbleBarStyle.horizotnal,
+    this.fabInnerPadding = const EdgeInsets.symmetric(horizontal: 10),
+    this.radius,
+  })  : assert(items.length >= 2,
             '\n\nStylish Bottom Navigation must have 2 or more items'),
         assert(
           items.every((dynamic item) => item.title != null) == true,
@@ -171,6 +172,7 @@ class StylishBottomBar extends StatefulWidget {
   final IconStyle? iconStyle;
 
   final EdgeInsetsGeometry fabInnerPadding;
+  final double? radius;
 
   @override
   State<StylishBottomBar> createState() => _StylishBottomBarState();
@@ -344,6 +346,7 @@ class _StylishBottomBarState extends State<StylishBottomBar>
           widget.iconSize!,
           widget.unselectedIconColor,
           widget.barStyle,
+          radius: widget.radius,
           onTap: () {
             if (widget.onTap != null) widget.onTap!(i);
           },

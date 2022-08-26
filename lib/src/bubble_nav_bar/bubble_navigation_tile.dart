@@ -47,11 +47,12 @@ class BubbleNavigationTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ///Label Widget
-    var label = LabelWidget(
-      animation: animation,
-      item: item,
-      color: item.backgroundColor!,
-    );
+    var label = item.title;
+    // LabelWidget(
+    //   animation: animation,
+    //   item: item,
+    //   color: item.backgroundColor!,
+    // );
 
     var outlined = selected && fillStyle == BubbleFillStyle.outlined;
     var fill = selected && fillStyle == BubbleFillStyle.fill;

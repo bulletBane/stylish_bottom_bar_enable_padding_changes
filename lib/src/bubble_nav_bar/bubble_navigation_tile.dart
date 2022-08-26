@@ -130,7 +130,7 @@ class BubbleNavigationTile extends StatelessWidget {
       if (!selected)
         AnimatedCrossFade(
           alignment: const Alignment(0, 0),
-          firstChild: const SizedBox.shrink(),
+          firstChild: label,
           secondChild: label,
           duration: const Duration(milliseconds: 250),
           sizeCurve: Curves.fastOutSlowIn,

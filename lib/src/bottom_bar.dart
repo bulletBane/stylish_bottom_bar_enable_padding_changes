@@ -222,7 +222,7 @@ class _StylishBottomBarState extends State<StylishBottomBar>
         reverseCurve: Curves.fastOutSlowIn.flipped,
       );
     });
-    _controllers[widget.currentIndex!].value = 1.0;
+    _controllers[widget.currentIndex!].value = 0.0;
     _backgroundColor = widget.items[widget.currentIndex!].backgroundColor;
   }
 

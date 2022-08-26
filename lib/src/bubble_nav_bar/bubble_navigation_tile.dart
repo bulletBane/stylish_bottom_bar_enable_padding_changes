@@ -127,17 +127,18 @@ class BubbleNavigationTile extends StatelessWidget {
         unselectedIconColor: unselectedIconColor,
         item: item,
       ),
-      AnimatedCrossFade(
-        alignment: const Alignment(0, 0),
-        firstChild: const SizedBox.shrink(),
-        secondChild: label,
-        duration: const Duration(milliseconds: 250),
-        sizeCurve: Curves.fastOutSlowIn,
-        firstCurve: Curves.fastOutSlowIn,
-        secondCurve: Curves.fastOutSlowIn.flipped,
-        crossFadeState:
-            selected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-      ),
+      if (!selected)
+        AnimatedCrossFade(
+          alignment: const Alignment(0, 0),
+          firstChild: const SizedBox.shrink(),
+          secondChild: label,
+          duration: const Duration(milliseconds: 250),
+          sizeCurve: Curves.fastOutSlowIn,
+          firstCurve: Curves.fastOutSlowIn,
+          secondCurve: Curves.fastOutSlowIn.flipped,
+          crossFadeState:
+              selected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+        ),
     ];
   }
 }

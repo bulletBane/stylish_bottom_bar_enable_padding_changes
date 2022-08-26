@@ -36,6 +36,8 @@ class StylishBottomBar extends StatefulWidget {
     this.barStyle = BubbleBarStyle.horizotnal,
     this.fabInnerPadding = const EdgeInsets.symmetric(horizontal: 10),
     this.radius,
+    this.heightForItem,
+    this.widthForItem,
   })  : assert(items.length >= 2,
             '\n\nStylish Bottom Navigation must have 2 or more items'),
         assert(
@@ -173,6 +175,8 @@ class StylishBottomBar extends StatefulWidget {
 
   final EdgeInsetsGeometry fabInnerPadding;
   final double? radius;
+  final double? heightForItem;
+  final double? widthForItem;
 
   @override
   State<StylishBottomBar> createState() => _StylishBottomBarState();
@@ -347,6 +351,8 @@ class _StylishBottomBarState extends State<StylishBottomBar>
           widget.unselectedIconColor,
           widget.barStyle,
           radius: widget.radius,
+          height: widget.heightForItem,
+          width: widget.widthForItem,
           onTap: () {
             if (widget.onTap != null) widget.onTap!(i);
           },

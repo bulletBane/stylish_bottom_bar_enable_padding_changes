@@ -22,6 +22,8 @@ class BubbleNavigationTile extends StatelessWidget {
     this.padding,
     this.fillStyle,
     this.radius,
+    this.height,
+    this.width,
   }) : super(key: key);
 
   final BubbleBarItem item;
@@ -39,6 +41,8 @@ class BubbleNavigationTile extends StatelessWidget {
   final BubbleBarStyle? barStyle;
   final BubbleFillStyle? fillStyle;
   final double? radius;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +73,8 @@ class BubbleNavigationTile extends StatelessWidget {
               highlightColor: Colors.transparent,
               splashColor: ink ? inkColor : Colors.transparent,
               child: Container(
+                height: height,
+                width: width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.horizontal(
                     right: Radius.circular(radius ?? 52),

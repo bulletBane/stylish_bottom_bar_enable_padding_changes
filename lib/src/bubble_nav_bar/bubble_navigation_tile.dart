@@ -120,6 +120,7 @@ class BubbleNavigationTile extends StatelessWidget {
 
   items(label) {
     return [
+      const SizedBox.shrink(),
       IconWidget(
         animation: animation,
         iconSize: iconSize,
@@ -127,18 +128,17 @@ class BubbleNavigationTile extends StatelessWidget {
         unselectedIconColor: unselectedIconColor,
         item: item,
       ),
-      if (!selected)
-        AnimatedCrossFade(
-          alignment: const Alignment(0, 0),
-          firstChild: label,
-          secondChild: label,
-          duration: const Duration(milliseconds: 250),
-          sizeCurve: Curves.fastOutSlowIn,
-          firstCurve: Curves.fastOutSlowIn,
-          secondCurve: Curves.fastOutSlowIn.flipped,
-          crossFadeState:
-              selected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-        ),
+      AnimatedCrossFade(
+        alignment: const Alignment(0, 0),
+        firstChild: const SizedBox.shrink(),
+        secondChild: label,
+        duration: const Duration(milliseconds: 250),
+        sizeCurve: Curves.fastOutSlowIn,
+        firstCurve: Curves.fastOutSlowIn,
+        secondCurve: Curves.fastOutSlowIn.flipped,
+        crossFadeState:
+            selected ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      ),
     ];
   }
 }

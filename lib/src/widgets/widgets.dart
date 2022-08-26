@@ -19,9 +19,7 @@ Widget innerWidget(
         type: MaterialType.transparency,
         child: Padding(
           padding: EdgeInsets.only(
-              bottom: barAnimation == BarAnimation.liquid
-                  ? 0
-                  : additionalBottomPadding,
+              bottom: 0,
               right: fabLocation == StylishBarFabLocation.end ? 72 : 0),
           child: MediaQuery.removePadding(
             context: context,

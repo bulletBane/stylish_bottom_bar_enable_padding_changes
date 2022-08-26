@@ -22,14 +22,7 @@ class LabelWidget extends StatelessWidget {
       child: FadeTransition(
         alwaysIncludeSemantics: true,
         opacity: animation,
-        child: DefaultTextStyle.merge(
-          style: TextStyle(
-            fontSize: activeFontSize,
-            fontWeight: FontWeight.w600,
-            color: color,
-          ),
-          child: item.title!,
-        ),
+        child: item.title!,
       ),
     );
   }
